@@ -3,39 +3,50 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
-type Category = "Frontend" | "Backend" | "Database" | "Tools";
+type Category = "Frontend" | "Backend" | "Database" | "Android" | "Tools";
 
 const skillsData: Record<Category, { name: string; level: number }[]> = {
   Frontend: [
-    { name: "HTML & CSS", level: 92 },
-    { name: "JavaScript", level: 80 },
-    { name: "React.js", level: 75 },
-    { name: "Tailwind CSS", level: 82 },
+    { name: "HTML", level: 95 },
+    { name: "CSS", level: 90 },
+    { name: "JavaScript", level: 85 },
+    { name: "React.js", level: 80 },
+    { name: "Tailwind CSS", level: 88 },
   ],
   Backend: [
+    { name: "Node.js", level: 75 },
+    { name: "Express.js", level: 70 },
     { name: "PHP", level: 80 },
+    { name: "C#", level: 65 },
+    { name: "Java", level: 70 },
     { name: "Python", level: 75 },
-    { name: "Node.js", level: 65 },
-    { name: "Flask", level: 70 },
-    { name: "Java", level: 62 },
   ],
   Database: [
+    { name: "MongoDB", level: 70 },
     { name: "MySQL", level: 85 },
-    { name: "MongoDB", level: 65 },
+    { name: "Firebase", level: 80 },
+  ],
+  Android: [
+    { name: "Android Studio", level: 85 },
+    { name: "Java", level: 75 },
+    { name: "XML", level: 90 },
+    { name: "Firebase", level: 80 },
   ],
   Tools: [
-    { name: "Git & GitHub", level: 82 },
-    { name: "VS Code", level: 92 },
-    { name: "Linux / CLI", level: 65 },
+    { name: "Git & GitHub", level: 85 },
+    { name: "VS Code", level: 95 },
+    { name: "Vercel", level: 80 },
+    { name: "Render", level: 75 },
   ],
 };
 
-const categories: Category[] = ["Frontend", "Backend", "Database", "Tools"];
+const categories: Category[] = ["Frontend", "Backend", "Database", "Android", "Tools"];
 
 const categoryGradients: Record<Category, string> = {
   Frontend: "from-violet-500 to-purple-400",
   Backend: "from-cyan-500 to-blue-400",
   Database: "from-emerald-500 to-teal-400",
+  Android: "from-fuchsia-500 to-pink-400",
   Tools: "from-orange-500 to-amber-400",
 };
 
@@ -79,11 +90,10 @@ export default function Skills() {
 
   return (
     <section
-      id="skills"
-      className="relative z-20 bg-[#121212] py-24 px-8 md:px-24 border-t border-white/10 overflow-hidden"
+      className="relative z-20 bg-[#0a0a0a] py-24 px-8 md:px-24 border-t border-white/5 overflow-hidden"
     >
       {/* Glow */}
-      <div className="absolute bottom-0 right-0 w-[500px] h-[300px] bg-cyan-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-purple-600/5 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto">
         <motion.div
@@ -93,11 +103,11 @@ export default function Skills() {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-16"
         >
-          <p className="text-sm font-semibold tracking-[0.2em] uppercase text-cyan-400 mb-4">
-            Expertise
+          <p className="text-sm font-semibold tracking-[0.2em] uppercase text-purple-400 mb-4">
+            Proficiency
           </p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
-            Skills & Technologies
+            Detailed Breakdown
           </h2>
         </motion.div>
 
@@ -120,24 +130,26 @@ export default function Skills() {
         </div>
 
         {/* Skill bars */}
-        <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12">
+        <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-2xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.2 }}
             >
-              {skillsData[active].map((skill, i) => (
-                <SkillBar
-                  key={skill.name}
-                  name={skill.name}
-                  level={skill.level}
-                  gradient={categoryGradients[active]}
-                  delay={i * 0.08}
-                />
-              ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+                {skillsData[active].map((skill, i) => (
+                  <SkillBar
+                    key={skill.name}
+                    name={skill.name}
+                    level={skill.level}
+                    gradient={categoryGradients[active]}
+                    delay={i * 0.08}
+                  />
+                ))}
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>

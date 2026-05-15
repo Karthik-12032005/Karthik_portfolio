@@ -8,6 +8,7 @@ import Contact from "@/components/Contact";
 import Marquee from "@/components/Marquee";
 import About from "@/components/About";
 import IsometricSkills from "@/components/IsometricSkills";
+import Skills from "@/components/Skills";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 
@@ -37,6 +38,9 @@ export default function Home() {
       {/* 3D Isometric Skills City */}
       <IsometricSkills />
 
+      {/* Detailed Skills Breakdown */}
+      <Skills />
+
       {/* Education */}
       <Education />
 
@@ -51,7 +55,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <a href="#home" className="text-xl font-bold tracking-tighter text-white">
-            K.<span className="text-gray-500">DEV</span>
+            KARTHIK <span className="text-gray-500"></span>
           </a>
 
           {/* Social links */}
